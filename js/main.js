@@ -16,43 +16,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const elementsToAnimate = document.querySelectorAll('.js-scroll');
-    elementsToAnimate.forEach(element => {
-        observer.observe(element);
-    });
+    elementsToAnimate.forEach(element => observer.observe(element));
+
     fetch('nav-bar.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('nav-placeholder').innerHTML = data;
         })
         .catch(err => console.error('Failed to load nav:', err));
+
     document.getElementById("title").textContent = profileData.name + "-Portfolio";
+
     // Header
     const isMobile = window.innerWidth <= 768; // adjust breakpoint if needed
-
     document.getElementById("header").innerHTML = `
-    
     <div class="row">
-    <div>
-     <img src="${profileData.imageUrl}" alt="personal"
-        class="personal-image animate__animated animate__zoomIn">
-    <h1 class="animate__animated animate__fadeInDown">${profileData.name}</h1>
-    <p class="animate__animated animate__fadeInDown" style="animation-delay: 0.4s;">
-        ${profileData.summary}
-    </p>
-    <a href="#contact" class="btn animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">تواصل</a></div>
-    ${!isMobile ? `<img src="${profileData.handImage}" alt="personal"
-    class="hand-image animate__animated animate__zoomIn">` : ''}
+        <div>
+            <img src="${profileData.imageUrl}" alt="personal"
+                class="personal-image animate__animated animate__zoomIn">
+            <h1 class="animate__animated animate__fadeInDown">${profileData.name}</h1>
+            <p class="animate__animated animate__fadeInDown" style="animation-delay: 0.4s;">
+                ${profileData.summary}
+            </p>
+            <a href="#" class="btn animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">تواصل</a>
+        </div>
+        ${!isMobile ? `<img src="${profileData.handImage}" alt="personal"
+        class="hand-image animate__animated animate__zoomIn">` : ''}
     </div>`;
-
 
     document.getElementById("footer").innerHTML = `<p>${profileData.footer}</p>`;
 
+    // Experience and Project logic stays the same
     window.addExperienceItem = (item) => {
         const experienceList = document.querySelector('.experience-list');
-        if (!experienceList) {
-            console.error('Experience list container not found.');
-            return;
-        }
+        if (!experienceList) return console.error('Experience list container not found.');
 
         const experienceItem = document.createElement('div');
         experienceItem.classList.add('experience-item', 'js-scroll');
@@ -75,16 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
         experienceItem.appendChild(ul);
 
         experienceList.appendChild(experienceItem);
-
         observer.observe(experienceItem);
     };
 
     window.addProjectItem = (item) => {
         const projectGrid = document.querySelector('.project-grid');
-        if (!projectGrid) {
-            console.error('Project grid container not found.');
-            return;
-        }
+        if (!projectGrid) return console.error('Project grid container not found.');
 
         const projectCard = document.createElement('div');
         projectCard.classList.add('project-card', 'js-scroll');
@@ -130,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             projectCard.appendChild(storeWrapper);
         }
+
         if (item.website) {
             const websiteWrapper = document.createElement('div');
             websiteWrapper.classList.add('project-footer');
@@ -140,15 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
             visitBtn.target = "_blank";
             websiteWrapper.appendChild(visitBtn);
             projectCard.appendChild(websiteWrapper);
-
         }
 
         projectGrid.appendChild(projectCard);
         observer.observe(projectCard);
     };
 
-
-
 });
-
-
