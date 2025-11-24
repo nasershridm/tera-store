@@ -1,0 +1,14 @@
+:root {
+  /* Main palette colors */
+  --primary-color: #319795;
+  --secondary-color: #4a5568;
+
+  /* Text colors */
+  --text-primary: #e2e8f0;
+  --text-secondary: #a0aec0;
+
+  /* Background colors */
+  --bg-dark: #19355c;
+  --bg-light: #091b34;
+  --bg-card: #2d3748;
+}
