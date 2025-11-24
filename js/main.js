@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+.
 
     const observer = new IntersectionObserver(handleIntersection, {
         threshold: 0.1,
