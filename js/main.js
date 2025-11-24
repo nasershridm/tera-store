@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => console.error('Failed to load nav:', err));
     document.getElementById("title").textContent = profileData.name + "-Portfolio";
     // Header
+    const isMobile = window.innerWidth <= 768; // adjust breakpoint if needed
+
     document.getElementById("header").innerHTML = `
     
     <div class="row">
@@ -38,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ${profileData.summary}
     </p>
     <a href="#contact" class="btn animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">تواصل</a></div>
-     <img src="${profileData.handImage}" alt="personal"
-        class="hand-image animate__animated animate__zoomIn">
+    ${!isMobile ? `<img src="${profileData.handImage}" alt="personal"
+    class="hand-image animate__animated animate__zoomIn">` : ''}
     </div>`;
 
 
